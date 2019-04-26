@@ -1,4 +1,5 @@
 <?php
+require_once '../bootloader.php';
 
 /**
  * Gauname saugu patikrinta user input.
@@ -197,12 +198,8 @@ function validate_field_select($field_input, &$field, &$safe_input) {
 }
 
 function validate_user_exists($field_input, &$field, &$safe_input) {
-    $user = new Core\User\User();
-    $user->setEmail($field_input);
-    $db = new Core\FileDB(DB_FILE);
-    $repo = new Core\User\Repository($db, TABLE_USERS);
-
-    if (!$repo->exists($user)) {
+    
+    if (!\App\App::$user_repo->exists($safe_input['email'])) {
         return true;
     } else {
         $field['error_msg'] = 'Tokiu emailu useris jau yra!';
