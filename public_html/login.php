@@ -42,6 +42,7 @@ function validate_login(&$safe_input, &$form) {
         case Core\User\Session::LOGIN_SUCCESS:
             return true;
     }
+    
     $form['error_msg'] = 'Blogas Email/Password!';
 }
 
