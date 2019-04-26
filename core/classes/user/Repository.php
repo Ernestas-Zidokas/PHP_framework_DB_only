@@ -13,5 +13,9 @@ class Repository extends \Core\User\Model {
 
         return self::REGISTER_ERR_EXISTS;
     }
+    
+    public function insert($user) {        
+        return parent::insertIfNotExists($user->getData(),['email']);
+    }
 
 }

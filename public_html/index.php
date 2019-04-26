@@ -7,18 +7,21 @@ $pdo = $connection->getPDO();
 $schema = new \Core\Database\Schema($connection, DB_NAME);
 $schema->init();
 
-$model_user = new \Core\User\Repository($connection);
-$model_user->insertIfNotExists([
-    'email' => 'valdau@nx.com',
+$repository = new \Core\User\Repository($connection);
+$user = new \Core\User\User([
+    'email' => 'valdau@' . rand(0, 100) . 'nx.com',
     'password' => 'bbd',
     'full_name' => 'Zanas Vandamas',
+    'account_type' => \Core\User\User::ACCOUNT_TYPE_USER,
+    'is_active' => true,
     'age' => 26,
     'gender' => 'm'
-        ], [
-    'email'
-]);
+        ]);
 
-$users = $model_user->load();
+$repository->insert($user);
+$users = $repository->load();
+
+\App\Zwiebel::$count = 2;
 ?>
 <html>
     <head>
