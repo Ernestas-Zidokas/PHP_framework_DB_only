@@ -1,5 +1,6 @@
 <?php
 require_once '../bootloader.php';
+
 $form = [
     'pre_validate' => [],
     'fields' => [
@@ -48,8 +49,8 @@ if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);
     if ($form_success) {
-        $success_msg = strtr('User "@username" sėkmingai prisijungei!', [
-            '@username' => $safe_input['email']
+        $success_msg = strtr('User "@email" sėkmingai prisijungei!', [
+            '@email' => $safe_input['email']
         ]);
         header('Location: index.php');
         exit();
