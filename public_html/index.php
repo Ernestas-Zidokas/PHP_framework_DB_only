@@ -2,14 +2,14 @@
 require_once '../bootloader.php';
 
 $connection = new \Core\Database\Connection(DB_CREDENTIALS);
-
-$pdo = $connection->getPDO();
 $schema = new \Core\Database\Schema($connection, DB_NAME);
-$schema->init();
 
 $repository = new \Core\User\Repository($connection);
+
+//READY
+
 $user = new \Core\User\User([
-    'email' => 'valdau@' . rand(0, 100) . 'nx.com',
+    'email' => 'valdau@nxxsda.comm',
     'password' => 'bbd',
     'full_name' => 'Zanas Vandamas',
     'account_type' => \Core\User\User::ACCOUNT_TYPE_USER,
@@ -18,10 +18,9 @@ $user = new \Core\User\User([
     'gender' => 'm'
         ]);
 
-$repository->insert($user);
-$users = $repository->load();
-
-\App\Zwiebel::$count = 2;
+$success = $repository->insert($user);
+var_dump('success', $success);
+$users = $repository->loadAll();
 ?>
 <html>
     <head>
@@ -30,12 +29,10 @@ $users = $repository->load();
     <body>
         <?php foreach ($users as $user): ?>
             <ul>
-                <?php foreach ($user as $col => $value): ?>
-                    <li>
-                        <b><?php print $col; ?></b>
-                        <i><?php print $value; ?></i>
-                    </li>
-                <?php endforeach; ?>
+                <li>
+                    <b>Email:</b>
+                    <i><?php print $user->getEmail(); ?></i>
+                </li>
             </ul>
         <?php endforeach; ?>
     </body>
