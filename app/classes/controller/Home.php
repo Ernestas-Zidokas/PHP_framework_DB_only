@@ -6,8 +6,11 @@ class Home extends \Core\Page\Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->page['content'] = 'Kregzdutes eina na';
-        $view = new \Core\Page\View(['title' => 'Siandien miegam']);
+        
+        $view = new \Core\Page\View([
+            'title' => 'Siandien miegam',
+            'header' => 'Kregzdutes eina na'
+        ]);
         $this->page['content'] = $view->render(ROOT_DIR . '/app/views/content.tpl.php');
     }
 
