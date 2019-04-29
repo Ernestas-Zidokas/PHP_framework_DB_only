@@ -17,7 +17,7 @@ class View {
     }
 
     public function getData($data) {
-        $this->data = $data;
+        return $this->data;
     }
 
     /**

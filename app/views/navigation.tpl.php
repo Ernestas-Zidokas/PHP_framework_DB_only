@@ -1,5 +1,5 @@
 <nav class="navigation">
-    <?php foreach ($view as $key => $value): ?>
-        <a href="<?php print $key; ?> "><?php print $value; ?></a>
+    <?php foreach ($view as $item): ?>
+        <a href="<?php print $item['link']; ?> "><?php print $item['title']; ?></a>
     <?php endforeach; ?>
 </nav>
