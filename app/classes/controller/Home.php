@@ -6,9 +6,7 @@ class Home extends \Core\Page\Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->page = [
-            'content' => 'Kregzdutes eina na',
-        ];
+        $this->page['content'] = 'Kregzdutes eina na';
     }
 
 }
