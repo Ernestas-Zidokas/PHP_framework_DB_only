@@ -23,10 +23,10 @@ class Model extends \Core\Database\Abstracts\Model {
         try {
             return $this->pdo->exec($sql);
         } catch (\PDOException $e) {
-            throw new Exception(
-            strtr('Framework database error: Failed to create table: @e', ['@e' => $e->getMessage()
-            ])
-            );
+            throw new Exception(strtr(
+                            'Framework database error: Failed to create table: @e',
+                            ['@e' => $e->getMessage()]
+            ));
         }
     }
 
@@ -47,10 +47,10 @@ class Model extends \Core\Database\Abstracts\Model {
             $query->execute();
             return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
-            throw new Exception(
-            strtr('Framework database error: Failed to insert to table: @e', ['@e' => $e->getMessage()
-            ])
-            );
+            throw new Exception(strtr(
+                            'Framework database error: Failed to insert to table: @e',
+                            ['@e' => $e->getMessage()]
+            ));
         }
     }
 
@@ -69,10 +69,11 @@ class Model extends \Core\Database\Abstracts\Model {
     }
 
     public function exists($conditions) {
-        $sql = strtr('SELECT EXISTS (SELECT 1 FROM @table WHERE @condition)', [
+        $sql = strtr('SELECT EXISTS (SELECT 1 FROM @table WHERE @conditions)', [
             '@table' => SQLBuilder::table($this->table_name),
-            '@condition' => SQLBuilder::columnsEqualBinds($conditions)
+            '@conditions' => SQLBuilder::columnsEqualBinds(array_keys($conditions))
         ]);
+
         $query = $this->pdo->prepare($sql);
 
         foreach ($conditions as $condition_key => $condition_value) {
@@ -82,8 +83,10 @@ class Model extends \Core\Database\Abstracts\Model {
         try {
             return $query->execute();
         } catch (PDOException $e) {
-            throw new Exception(
-            strtr('Failed to check exists @e', ['@e' => $e->getMessage()]));
+            throw new Exception(strtr(
+                            'Framework database error: Failed to check record existance from table: @e',
+                            ['@e' => $e->getMessage()]
+            ));
         }
     }
 
@@ -117,10 +120,10 @@ class Model extends \Core\Database\Abstracts\Model {
         try {
             return $query->execute();
         } catch (PDOException $e) {
-            throw new Exception(
-            strtr('Framework database error: Failed to update table: @e', ['@e' => $e->getMessage()
-            ])
-            );
+            throw new Exception(strtr(
+                            'Framework database error: Failed to update table: @e',
+                            ['@e' => $e->getMessage()]
+            ));
         }
     }
 
@@ -147,10 +150,10 @@ class Model extends \Core\Database\Abstracts\Model {
         try {
             return $query->execute();
         } catch (PDOException $e) {
-            throw new Exception(
-            strtr('Framework database error: Failed to delete from table: @e', ['@e' => $e->getMessage()
-            ])
-            );
+            throw new Exception(strtr(
+                            'Framework database error: Failed to delete from table: @e',
+                            ['@e' => $e->getMessage()]
+            ));
         }
     }
 
