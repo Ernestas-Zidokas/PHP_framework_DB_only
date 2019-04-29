@@ -21,7 +21,7 @@ class Controller {
                 'body_start' => [],
                 'body_end' => []
             ],
-            'header' => false,
+            'header' => true,
             'footer' => false,
             'content' => 'This is core controller!'
             . 'You need to extend this class in your App!',
