@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-class Home extends \Core\Page\Controller {
+class About extends \Core\Page\Controller {
 
     public function __construct() {
         parent::__construct();
@@ -29,7 +29,7 @@ class Home extends \Core\Page\Controller {
         $this->page['header'] = $nav_view->render();
 
         $view = new \Core\Page\View([
-            'title' => 'Welcome to Home'
+            'title' => 'Welcome to About'
         ]);
 
         $this->page['content'] = $view->render(ROOT_DIR . '/app/views/content.tpl.php');

@@ -2,5 +2,9 @@
 
 require_once '../bootloader.php';
 
-$controller = new \App\Controller\Home();
-print $controller->onRender();
+$controllerHome = new \App\Controller\Home();
+$controllerAbout = new \App\Controller\About();
+
+print $controllerHome->onRender();
+print $controllerAbout->onRender();
+
