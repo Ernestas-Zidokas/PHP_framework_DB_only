@@ -2,10 +2,16 @@
 
 require_once '../bootloader.php';
 
-if ($_SERVER['REQUEST_URI'] == '/about.php') {
-    $controllerAbout = new \App\Controller\About();
-    print $controllerAbout->onRender();
-} else {
-    $controllerHome = new \App\Controller\Home();
-    print $controllerHome->onRender();
+switch ($_SERVER['REQUEST_URI']) {
+    case '/about.php':
+        $controller = '\App\Controller\About';
+        break;
+    default :
+        $controller = '\App\Controller\Home';
+        break;
 }
+
+$control = new $controller();
+print $control->onRender();
+
+
