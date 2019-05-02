@@ -30,3 +30,13 @@ function validate_string_lenght_60_chars($field_input, &$field, &$safe_input) {
         ]);
     }
 }
+
+function validate_login(&$safe_input, &$form) {
+    $status = \App\App::$session->login($safe_input['email'], $safe_input['password']);
+    switch ($status) {
+        case Core\User\Session::LOGIN_SUCCESS:
+            return true;
+    }
+
+    $form['error_msg'] = 'Blogas Email/Password!';
+}

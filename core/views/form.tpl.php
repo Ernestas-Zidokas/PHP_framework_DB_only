@@ -1,5 +1,5 @@
 <form method="POST" enctype="multipart/form-data">
-    <?php foreach ($form['fields'] as $field_id => $field): ?>
+    <?php foreach ($view['fields'] as $field_id => $field): ?>
         <label>
             <span><?php print $field['label']; ?></span>
 
@@ -31,12 +31,12 @@
         </label>
     <?php endforeach; ?>
 
-    <?php if (isset($form['error_msg'])): ?>
-        <p class="error"><?php print $form['error_msg']; ?></p>
+    <?php if (isset($view['error_msg'])): ?>
+        <p class="error"><?php print $view['error_msg']; ?></p>
     <?php endif; ?>
 
     <!-- Buttons -->
-    <?php foreach ($form['buttons'] as $button_id => $button): ?>
+    <?php foreach ($view['buttons'] as $button_id => $button): ?>
         <button name="action" value="<?php print $button_id; ?>">
             <?php print $button['text']; ?>
         </button>
