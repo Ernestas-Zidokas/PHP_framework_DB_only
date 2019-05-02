@@ -27,14 +27,6 @@ function redirect() {
     }
 }
 
-function validate_logout(&$safe_input, &$form) {
-    if (\App\App::$session->isLoggedIn() === true) {
-        \App\App::$session->logout();
-
-        return true;
-    }
-}
-
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);

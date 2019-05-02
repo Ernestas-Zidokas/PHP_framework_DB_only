@@ -3,6 +3,7 @@
 namespace App\Objects\Form;
 
 class Login extends \Core\Page\Objects\Form {
+
     public function __construct() {
         parent::__construct([
             'fields' => [
@@ -34,5 +35,5 @@ class Login extends \Core\Page\Objects\Form {
             ]
         ]);
     }
-}
 
+}

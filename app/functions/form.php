@@ -69,3 +69,11 @@ function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'imag
     }
     return false;
 }
+
+function validate_logout(&$safe_input, &$form) {
+    if (\App\App::$session->isLoggedIn() === true) {
+        \App\App::$session->logout();
+
+        return true;
+    }
+}

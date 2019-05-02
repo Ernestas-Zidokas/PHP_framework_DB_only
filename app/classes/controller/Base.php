@@ -7,31 +7,48 @@ class Base extends \Core\Page\Controller {
     public function __construct() {
         parent::__construct();
 
-        $nav_view = new \App\View\Navigation([
-            [
-                'link' => 'index.php',
-                'title' => 'Index'
-            ],
-            [
-                'link' => 'register.php',
-                'title' => 'Register'
-            ],
-            [
-                'link' => 'login.php',
-                'title' => 'Login'
-            ],
-            [
-                'link' => 'logout.php',
-                'title' => 'Logout'
-            ]
-        ]);
+        if (!\App\App::$session->isLoggedIn() === true) {
+            $nav_view = new \App\View\Navigation([
+                [
+                    'link' => 'home',
+                    'title' => 'Home'
+                ],
+                [
+                    'link' => 'register',
+                    'title' => 'Register'
+                ],
+                [
+                    'link' => 'login',
+                    'title' => 'Login'
+                ],
+                [
+                    'link' => 'logout',
+                    'title' => 'Logout'
+                ]
+            ]);
+        } else {
+            $nav_view = new \App\View\Navigation([
+                [
+                    'link' => 'index',
+                    'title' => 'Index'
+                ],
+                [
+                    'link' => 'register',
+                    'title' => 'Register'
+                ],
+                [
+                    'link' => 'logout',
+                    'title' => 'Logout'
+                ]
+            ]);
+        }
 
         $this->page['header'] = $nav_view->render();
 
         $footer_view = new \App\View\Footer([
             [
-                'name' => 'Kilimai ant sienos',
-                'contacts' => ' 86666666'
+                'name' => 'Footer name',
+                'contacts' => 'Footer contacts'
             ]
         ]);
 
