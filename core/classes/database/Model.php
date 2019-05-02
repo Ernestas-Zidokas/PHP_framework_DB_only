@@ -81,7 +81,8 @@ class Model extends \Core\Database\Abstracts\Model {
         }
 
         try {
-            return $query->execute();
+            $query->execute();
+            return $query->fetchColumn();
         } catch (PDOException $e) {
             throw new Exception(strtr(
                             'Framework database error: Failed to check record existance from table: @e',

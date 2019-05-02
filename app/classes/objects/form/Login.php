@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Objects;
+namespace App\Objects\Form;
 
-class FormLogin extends \Core\Page\Objects\Form {
-
+class Login extends \Core\Page\Objects\Form {
     public function __construct() {
         parent::__construct([
-            'pre_validate' => [],
             'fields' => [
                 'email' => [
                     'label' => 'Email',
                     'type' => 'text',
-                    'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
                     'placeholder' => 'email@gmail.com',
                     'validate' => [
                         'validate_not_empty',
@@ -34,12 +31,8 @@ class FormLogin extends \Core\Page\Objects\Form {
                 'submit' => [
                     'text' => 'Login!'
                 ]
-            ],
-            'callbacks' => [
-                'success' => [],
-                'fail' => []
             ]
         ]);
     }
-
 }
+

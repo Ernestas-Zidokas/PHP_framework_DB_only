@@ -34,7 +34,7 @@ class Form {
 
     public function validate_form() {
         $success = true;
-        $this->form['validate'] = $this->form['validate'] ?? [];
+        $this->form['pre_validate'] = $this->form['pre_validate'] ?? [];
 
         foreach ($this->form['pre_validate'] as $pre_validator) {
             if (is_callable($pre_validator)) {
@@ -82,29 +82,7 @@ class Form {
                 }
             }
         }
-
-        if ($success) {
-            foreach ($this->form['callbacks']['success'] as $callback) {
-                if (is_callable($callback)) {
-                    $callback($this->input, $this->form);
-                } else {
-                    throw new Exception(strtr('Not callable @function function', [
-                        '@function' => $callback
-                    ]));
-                }
-            }
-        } else {
-            foreach ($this->form['callbacks']['fail'] as $callback) {
-                if (is_callable($callback)) {
-                    $callback($this->input, $this->form);
-                } else {
-                    throw new Exception(strtr('Not callable @function function', [
-                        '@function' => $callback
-                    ]));
-                }
-            }
-        }
-
+        
         return $success;
     }
 
@@ -117,6 +95,10 @@ class Form {
         } else {
             return self::STATUS_NOT_INPUT;
         }
+    }
+    
+    public function getInput(){
+        return $this->input;
     }
 
 }
